@@ -1,0 +1,21 @@
+{
+  "name": "WebpageDesign",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/juniorkid/Project",
+  "authors": [
+    "kakcare <vicharatti@hotmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.3"
+  }
+}
