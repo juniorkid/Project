@@ -8,7 +8,6 @@
 	<title>Table</title>
 	<script src="lib/angular/angular.js"></script>
 	<script src="js/app.js"></script>
-	<script src="js/no.js"></script>
 	<link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body ng-controller="mainCtrl">
@@ -18,17 +17,17 @@
 	</center>
 	<table class="table table-striped">
 		<thead>
-			<th>No.</th>
-			<th>Name</th>
-			<th>ID</th>
-			<th>Sex</th>
+			<th><span class="label label-primary">RFID</span></th>
+			<th><span class="label label-primary">Name</span></th>
+			<th><span class="label label-primary">Role</span></th>
+			<th><span class="label label-primary">Count</span></th>
 		</thead>
 		<tbody>
-			<tr ng-repeat="member in members">
-				<td></td>
-				<td>{{member.name}}</td>
-				<td>{{member.id}}</td>
-				<td>{{member.sex}}</td>
+			<tr ng-repeat="person in persons">
+				<td>{{person.RFID}}</td>
+				<td>{{person.First_Name}} &nbsp; {{person.Last_name}}</td>
+				<td>{{person.Role}}</td>
+				<td>{{person.Count}}</td>
 			</tr>
 		</tbody>
 	</table>
@@ -36,7 +35,7 @@
 		footer{border:1px solid grey; padding:8px;}
 	</style>
 	<footer>
-		<center><p><h3>Filter <button type="button" class="btn btn-info">Search</button></h3></p></center>
+		<center><p><h3>Filter<button type="button" class="btn btn-info">Search</button></h3></p></center>
 	</footer>
 </body>
 </html>
