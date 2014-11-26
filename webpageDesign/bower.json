@@ -1,0 +1,23 @@
+{
+  "name": "WebpageDesign",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/juniorkid/Project",
+  "authors": [
+    "kakcare <vicharatti@hotmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.3",
+    "angular-socket-io": "~0.6.1",
+    "socket.io-client": "~1.2.1"
+  }
+}
