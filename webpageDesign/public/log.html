@@ -14,22 +14,20 @@
 </head>
 <body ng-controller="mainCtrl">
 	<center>
-		<h1>Member Table</h1>
+		<h1>Working Status Table</h1>
 		<a href="index.html">Back to Homepage</a>
 	</center>
 	<table class="table table-striped">
 		<thead>
 			<th><span class="label label-primary">RFID</span></th>
 			<th><span class="label label-primary">Name</span></th>
-			<th><span class="label label-primary">Role</span></th>
-			<th><span class="label label-primary">Count</span></th>
+			<th><span class="label label-primary">Date</span></th>
 		</thead>
 		<tbody>
-			<tr ng-repeat="person in persons">
-				<td>{{person.RFID}}</td>
-				<td>{{person.First_Name}} &nbsp; {{person.Last_name}}</td>
-				<td>{{person.Role}}</td>
-				<td>{{person.Count}}</td>
+			<tr ng-repeat="log in logs">
+				<td>{{log.RFID}}</td>
+				<td>{{log.Name}}</td>
+				<td>{{log.Date}}</td>
 			</tr>
 		</tbody>
 	</table>

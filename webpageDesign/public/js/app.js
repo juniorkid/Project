@@ -7,7 +7,9 @@ angular.module("myApp", ['btford.socket-io'])
 .controller('mainCtrl', function($scope, $http, socketIO){
 	$scope.persons = [];
 	$scope.personInstance = {};
+	$scope.logs = [];
 	refreshPersons();
+	refreshLogs();
 
 	function refreshPersons(){
 		$http.get('/api/book').success(function(data){
@@ -15,7 +17,14 @@ angular.module("myApp", ['btford.socket-io'])
 		})
 	}
 
-	$scope.save = function(){
+	function refreshLogs(){
+		$http.get('/api/log').success(function(data){
+			$scope.logs = data;
+			console.log(data);
+		})
+	}
+
+	$scope.saveperson = function(){
 		$http.post('/api/book', $scope.personInstance).success(function(data){
 			$scope.persons.push(data);
 			$scope.personInstance = {};
@@ -24,6 +33,10 @@ angular.module("myApp", ['btford.socket-io'])
 
 	socketIO.on('person:refresh', function(){
 		refreshPersons();
+	});
+
+	socketIO.on('log:refresh', function(){
+		refreshLogs();
 	});
 
 })
