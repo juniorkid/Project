@@ -7,6 +7,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var db_person = mongojs('Project', ['person']);
 var db_logs = mongojs('Project', ['log']);
+var db_login = mongojs('Project', ['login']);
 var lastlog = [];
 var now = [];
 var date = [];
@@ -44,6 +45,12 @@ app.post('/api/log',function(req,res){
 
 app.get('/api/log',function(req,res){
 	db_logs.log.find({},function(err,logs){
+		res.send(logs);
+	});
+})
+
+app.get('/api/login',function(req,res){
+	db_login.login.find({},function(err,logs){
 		res.send(logs);
 	});
 })

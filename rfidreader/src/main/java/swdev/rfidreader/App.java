@@ -19,8 +19,6 @@ import org.json.JSONObject;
 public class App {
 	public static void main(String[] args) {
 		String rfid = "000000000";
-		String temp;
-		int c = 0;
 		try {
 			HttpClient client = HttpClientBuilder.create().build();
 			HttpGet request = new HttpGet("http://localhost:8080/api/book");
@@ -41,7 +39,6 @@ public class App {
 					requestpost.setHeader("Content-type", "application/json");
 					requestpost.setEntity(params);
 					System.out.println(book.getString("First_Name"));
-					HttpResponse responepost = client.execute(requestpost);
  				   
 				}
 			}
