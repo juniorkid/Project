@@ -10,8 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -24,29 +24,28 @@ import org.json.JSONObject;
  * Hello world!
  *
  */
-public class Login extends JFrame{
-	
+public class Login extends JFrame {
+
 	public static void main(String[] args) {
-		
-		EventQueue.invokeLater(new Runnable (){
+
+		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				Login form = new Login();
 				form.setVisible(true);
 			}
 		});
-		
+
 	}
-	
-	public Login(){
-		
-		
+
+	public Login() {
+
 		// Create Form Frame
 		super("Login Form");
-		setSize(450,300);
+		setSize(450, 300);
 		setLocation(500, 280);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-			
+
 		// Label Result
 		final JLabel lblName = new JLabel("Name : ");
 		final JTextField tfName = new JTextField();
@@ -55,34 +54,42 @@ public class Login extends JFrame{
 		lblName.setBounds(26, 54, 370, 14);
 		tfName.setBounds(80, 54, 200, 18);
 		lblTime.setBounds(26, 80, 370, 14);
-		tfTime.setBounds(80,80,200,18);
+		tfTime.setBounds(80, 80, 200, 18);
 		getContentPane().add(lblName);
 		getContentPane().add(lblTime);
 		getContentPane().add(tfName);
 		getContentPane().add(tfTime);
-		
-		
-		//Create Button Open
+
+		// Create Button Open
 		JButton btnButton = new JButton("Forgot RFID card");
 		btnButton.setBounds(240, 220, 162, 23);
 		btnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				
-				String s = (String) JOptionPane.showInputDialog(null,
-				"Hey !\n" + "\"Input your name?\"",
-				"Title Dialog", JOptionPane.PLAIN_MESSAGE, null,
-				null, "Name");
-				
-				//If a string was returned , say so.
-				if((s != null) && (s.length()>0)){
-					tfName.setText("Hello..." + s + "!");
+				// ///////////////////// *********** Test Login*************
+				// ///////////////////////////
+
+				JTextField username = new JTextField();
+				JTextField password = new JPasswordField();
+				Object[] message = { "Username:", username, "Password:", password };
+
+				int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
+				if (option == JOptionPane.OK_OPTION) {
+					if (username.getText().equals("h") && password.getText().equals("h")) {
+						System.out.println("Login successful");
+					} else {
+						System.out.println("login failed");
+					}
+				} else {
+					System.out.println("Login canceled");
 				}
+
 			}
+			// ///////////////////// *********** Test Login*************
+			// ///////////////////////////
 		});
 		getContentPane().add(btnButton);
 	}
 
-	
 	public void loginCheck() {
 		String user = "DREAM123";
 		String pass = "aaaaaaaaa";
