@@ -1,4 +1,7 @@
 use Project
+
+
+
 db.person.insert([
 {RFID : "000000000" ,First_Name : "Tanapol",Last_name : "Anantachaiwanich",Role : "Manager" , Count : 0},
 {RFID : "111111111" ,First_Name : "Krerkbura",Last_name : "Chanprim",Role : "Programmer" , Count : 0},
