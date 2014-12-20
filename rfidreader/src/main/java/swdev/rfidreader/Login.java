@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -25,6 +27,7 @@ import org.json.JSONObject;
 public class Login extends JFrame{
 	
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable (){
 			public void run() {
 				Login form = new Login();
@@ -36,6 +39,7 @@ public class Login extends JFrame{
 	
 	public Login(){
 		
+		
 		// Create Form Frame
 		super("Login Form");
 		setSize(450,300);
@@ -44,13 +48,23 @@ public class Login extends JFrame{
 		getContentPane().setLayout(null);
 			
 		// Label Result
-		final JLabel lblResult = new JLabel("Result", JLabel.CENTER);
-		lblResult.setBounds(26, 54, 370, 14);
-		getContentPane().add(lblResult);
+		final JLabel lblName = new JLabel("Name : ");
+		final JTextField tfName = new JTextField();
+		final JLabel lblTime = new JLabel("Time : ");
+		final JTextField tfTime = new JTextField();
+		lblName.setBounds(26, 54, 370, 14);
+		tfName.setBounds(80, 54, 200, 18);
+		lblTime.setBounds(26, 80, 370, 14);
+		tfTime.setBounds(80,80,200,18);
+		getContentPane().add(lblName);
+		getContentPane().add(lblTime);
+		getContentPane().add(tfName);
+		getContentPane().add(tfTime);
+		
 		
 		//Create Button Open
-		JButton btnButton = new JButton("Open Message Box");
-		btnButton.setBounds(128, 93, 162, 23);
+		JButton btnButton = new JButton("Forgot RFID card");
+		btnButton.setBounds(240, 220, 162, 23);
 		btnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				
@@ -61,7 +75,7 @@ public class Login extends JFrame{
 				
 				//If a string was returned , say so.
 				if((s != null) && (s.length()>0)){
-					lblResult.setText("Hello..." + s + "!");
+					tfName.setText("Hello..." + s + "!");
 				}
 			}
 		});
