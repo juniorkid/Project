@@ -1,9 +1,0 @@
-use Project
-
-
-
-db.person.insert([
-{RFID : "000000000" ,First_Name : "Tanapol",Last_name : "Anantachaiwanich",Role : "Manager" , Count : 0},
-{RFID : "111111111" ,First_Name : "Krerkbura",Last_name : "Chanprim",Role : "Programmer" , Count : 0},
-{RFID : "222222222" ,First_Name : "Jiratti",Last_name : "Vichatikoon",Role : "Webmaster" , Count : 0},
-{RFID : "333333333" ,First_Name : "Supakchaya",Last_name : "Charoensook",Role : "Graphic Designer" , Count : 0}]);

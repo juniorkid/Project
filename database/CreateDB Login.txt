@@ -1,6 +1,0 @@
-use Project
-db.login.insert([
-{Login : "DREAM123" ,Password : "aaaaaaaaa" ,RFID : "000000000"},
-{Login : "Ne123456" ,Password : "bbbbbbbbb" ,RFID : "111111111"},
-{Login : "Care1234" ,Password : "ccccccccc" ,RFID : "222222222"},
-{Login : "Beer1234" ,Password : "ddddddddd" ,RFID : "333333333"}]);
