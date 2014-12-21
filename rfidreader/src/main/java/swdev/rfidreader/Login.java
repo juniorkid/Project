@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.security.MessageDigest;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,20 +26,11 @@ import org.json.JSONObject;
  *
  */
 public class Login extends JFrame {
-
-	public static void main(String[] args) {
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				Login form = new Login();
-				form.setVisible(true);
-			}
-		});
-
-	}
-
+	private final JLabel lblName;
+	private final JTextField tfName;
+	private final JLabel lblTime;
+	private final JTextField tfTime;
 	public Login() {
-
 		// Create Form Frame
 		super("Login Form");
 		setSize(450, 300);
@@ -47,10 +39,12 @@ public class Login extends JFrame {
 		getContentPane().setLayout(null);
 
 		// Label Result
-		final JLabel lblName = new JLabel("Name : ");
-		final JTextField tfName = new JTextField();
-		final JLabel lblTime = new JLabel("Time : ");
-		final JTextField tfTime = new JTextField();
+		lblName = new JLabel("Name : ");
+		tfName = new JTextField();
+		tfName.setEnabled(false);
+		lblTime = new JLabel("Time : ");
+		tfTime = new JTextField();
+		tfTime.setEnabled(false);
 		lblName.setBounds(26, 54, 370, 14);
 		tfName.setBounds(80, 54, 200, 18);
 		lblTime.setBounds(26, 80, 370, 14);
@@ -70,15 +64,11 @@ public class Login extends JFrame {
 
 				JTextField username = new JTextField();
 				JTextField password = new JPasswordField();
-				Object[] message = { "Username:", username, "Password:", password };
+				Object[] message = { "Username:", username, "Password:", password};
 
 				int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
 				if (option == JOptionPane.OK_OPTION) {
-					if (username.getText().equals("h") && password.getText().equals("h")) {
-						System.out.println("Login successful");
-					} else {
-						System.out.println("login failed");
-					}
+					loginCheck(username.getText(),password.getText());
 				} else {
 					System.out.println("Login canceled");
 				}
@@ -89,12 +79,25 @@ public class Login extends JFrame {
 		});
 		getContentPane().add(btnButton);
 	}
-
-	public void loginCheck() {
-		String user = "DREAM123";
-		String pass = "aaaaaaaaa";
-
+	
+	public void setName(String name){
+		tfName.setText(name);
+	}
+	
+	public void setDate(String date){
+		tfTime.setText(date);
+	}
+	
+	public void loginCheck(String user, String pass) {
+		System.out.println(user+"  "+pass);
 		try {
+			
+			//MD5
+			byte[] bytePassword = pass.getBytes();
+			MessageDigest md5 = MessageDigest.getInstance("MD5");
+			byte[] md5pass = md5.digest(bytePassword);
+			String md5StringPassword = new String(md5pass);
+			
 			HttpClient client = HttpClientBuilder.create().build();
 			HttpGet request = new HttpGet("http://localhost:8080/api/login");
 			HttpResponse response = client.execute(request);
@@ -108,10 +111,14 @@ public class Login extends JFrame {
 			JSONArray array = new JSONArray(sb.toString());
 			for (int i = 0; i < array.length(); i++) {
 				JSONObject account = array.getJSONObject(i);
-				if (account.getString("Login").equals(user) && account.getString("Password").equals(pass)) {
+		/*		if (account.getString("Login").equals(user) && account.getString("Password").equals(pass)) {
 					System.out.println(account.getString("RFID"));
 				}
+				else
+					System.out.println("FAIL");*/
 			}
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
