@@ -100,12 +100,20 @@ app.get('/api/log',function(req,res){
 })
 
 //======================= SEARCH =============================
-app.post('/api/ID_search',function(req,res){
+app.post('/api/log_search',function(req,res){
 	console.log("Searching...");
 	console.log(req.body.StudentID)
 	db_logs.log.find(({StudentID:req.body.StudentID}),function(err,logs){
-		console.log(logs);
 		res.send(logs);
+	});
+});
+
+app.post('/api/person_search',function(req,res){
+	console.log("Searching...");
+	console.log(req.body.StudentID);
+	db_person.person.find(({StudentID:req.body.StudentID}),function(err,logs){
+		res.send(logs);
+
 	});
 });
 //============================================================
@@ -115,6 +123,20 @@ app.get('/api/login',function(req,res){
 		res.send(logs);
 	});
 })
+
+
+app.post('/api/edituser',function(req,res){
+	console.log(req.body.all);
+	db_person.person.update({RFID : req.body.RFID},{RFID : req.body.RFID , StudentID : req.body.StudentID, 
+		First_Name : req.body.First_Name,Last_name : req.body.Last_name,Role : req.body.Role , 
+		late : req.body.late , all : req.body.all},function(err,persons){
+		console.log(persons);
+		res.send(persons);	
+		io.emit("person:refresh");
+	});
+});
+
+
 
 io.on('connection', function(socket){
   console.log('a user connected');

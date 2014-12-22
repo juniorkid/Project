@@ -9,6 +9,8 @@ angular.module("myApp", ['btford.socket-io'])
 	$scope.personInstance = {};
 	$scope.logs = [];
 	$scope.selectedModel = {};
+	$scope.log_searchAll = [];
+	$scope.person_searchAll = [];
 	refreshPersons();
 	refreshLogs();
 
@@ -40,20 +42,23 @@ angular.module("myApp", ['btford.socket-io'])
 	
 
 	$scope.edituser = function(){
-		$http.post('/api/edit', $scope.selectedModel).success(function(data){
-			$scope.persons.push(data);
+		$http.post('/api/edituser', $scope.selectedModel).success(function(data){
 			$scope.selectedModel = {};
 		});
 	}
 
 	$scope.ID_searching = function (){
-		console.log($scope.ID_search.StudentID);
-		console.log($scope.ID_search);
-		$http.post('/api/ID_search',$scope.ID_search).success(function(data){
-			$scope.ID_searchAll = data;			
+		$http.post('/api/log_search',$scope.ID_search).success(function(data){
+			$scope.log_searchAll = data;			
+			console.log("Searching Success");
+		})
+
+		$http.post('/api/person_search',$scope.ID_search).success(function(data){
+			$scope.person_searchAll = data;			
 			console.log("Searching Success");
 		})
 	}
+
 
 	socketIO.on('person:refresh', function(){
 		refreshPersons();
