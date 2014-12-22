@@ -11,7 +11,9 @@ var db_login = mongojs('Project', ['login']);
 var lastlog = [];
 var now = [];
 var date = [];
-
+var hour = [];
+var min = [];
+var sec  = [];
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json())
 
@@ -28,14 +30,30 @@ app.post('/api/book',function(req,res){
 	});
 });
 
+app.post('/api/stat',function(req,res){
+	console.log(req.body);
+	db_person.person.update({RFID: req.body.RFID},{RFID : req.body.RFID , StudentID : req.body.StudentID , First_Name : req.body.First_Name ,Last_name : req.body.Last_name , Role : req.body.Role , late : req.body.late , all : req.body.all+1},function(err,persons){
+		console.log(persons);
+		res.send(persons);	
+		io.emit("person:refresh");
+	});
+});
+
+
 app.post('/api/log',function(req,res){
 	now = new Date();
 	date = dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+	hours = now.getHours()+"";
+	min  = now.getMinutes()+"";
+	sec  = now.getSeconds()+"";
 	console.log(date);
 	lastlog = { 
 				RFID: req.body.RFID,
 				Name: req.body.First_Name,
-				Date: date
+				Date: date,
+				Hour: hours,
+				Min : min,
+				Sec : sec
 				}
 	db_logs.log.insert((lastlog),function(err,logs){
 		res.send(logs);	
