@@ -99,17 +99,6 @@ app.get('/api/log',function(req,res){
 	});
 })
 
-//======================= SEARCH =============================
-app.post('/api/ID_search',function(req,res){
-	console.log("Searching...");
-	console.log(req.body.StudentID)
-	db_logs.log.find(({StudentID:req.body.StudentID}),function(err,logs){
-		console.log(logs);
-		res.send(logs);
-	});
-});
-//============================================================
-
 app.get('/api/login',function(req,res){
 	db_login.login.find({},function(err,logs){
 		res.send(logs);

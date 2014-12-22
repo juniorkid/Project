@@ -10,8 +10,6 @@ angular.module("myApp", ['btford.socket-io'])
 	$scope.logs = [];
 	refreshPersons();
 	refreshLogs();
-	$scope.ID_search = {};
-	$scope.ID_searchAll =[];
 
 	function refreshPersons(){
 		$http.get('/api/book').success(function(data){
@@ -43,15 +41,7 @@ angular.module("myApp", ['btford.socket-io'])
 			$scope.personInstance = {};
 		});
 	}
-	
-	$scope.ID_searching = function (){
-		console.log($scope.ID_search.StudentID);
-		console.log($scope.ID_search);
-		$http.post('/api/ID_search',$scope.ID_search).success(function(data){
-			$scope.ID_searchAll = data;			
-			console.log("Searching Success");
-		})
-	}
+
 	socketIO.on('person:refresh', function(){
 		refreshPersons();
 	});
