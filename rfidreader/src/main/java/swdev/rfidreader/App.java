@@ -48,10 +48,9 @@ public class App {
 					rfid = AppRFID.getRfid();
 					if (rfid != null) {
 						try {
-							Thread.sleep(1000);
+							Thread.sleep(500);
 							App.CheckRFID();
 							AppRFID.setRfid(null);
-							Thread.sleep(1000);
 						} catch (Exception e) {
 							System.out.println("Connection Fail");
 							e.printStackTrace();
@@ -110,10 +109,15 @@ public class App {
 					form.setDate(Integer.toString(json.getJSONObject(0).getInt("Hour"))
 							+ ":" + Integer.toString(json.getJSONObject(0).getInt("Min"))
 							+ ":" + Integer.toString(json.getJSONObject(0).getInt("Sec")));
-					if(json.getJSONObject(0).getInt("Hour") > 8)
+					person.put("all", person.getInt("all")+1);
+					if(json.getJSONObject(0).getInt("Hour") > 8){
 						person.put("late", person.getInt("late")+1);
+				//		
+					}
+				//	else
+					//	person.put("all", person.getInt("all")+1);
 					updateStat(person);
-						
+					System.out.println(person.getInt("all"));
 					// System.out.println(sb.toString());
 					System.out.println(person.getString("First_Name"));
 					break;

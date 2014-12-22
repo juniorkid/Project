@@ -22,14 +22,16 @@
 			<th><span class="label label-primary">RFID</span></th>
 			<th><span class="label label-primary">Name</span></th>
 			<th><span class="label label-primary">Role</span></th>
-			<th><span class="label label-primary">Count</span></th>
+			<th><span class="label label-primary">late</span></th>
+			<th><span class="label label-primary">all</span></th>
 		</thead>
 		<tbody>
 			<tr ng-repeat="person in persons">
 				<td>{{person.RFID}}</td>
 				<td>{{person.First_Name}} &nbsp; {{person.Last_name}}</td>
 				<td>{{person.Role}}</td>
-				<td>{{person.Count}}</td>
+				<td>{{person.late}}</td>
+				<td>{{person.all}}</td>
 			</tr>
 		</tbody>
 	</table>
