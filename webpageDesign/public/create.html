@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="myCreate">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="lib/angular/angular.js"></script>
+    <script type="text/javascript" src="lib/socket.io-client/socket.io.js"></script>
+    <script type="text/javascript" src="lib/angular-socket-io/socket.js"></script>
+    <script type="text/javascript" src="js/create.js"></script>
+    <script src="lib/angular-md5/angular-md5.js"></script>
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.min.css">
+	<title>Create</title>
+
+</head>
+<body ng-controller="mainCtrl">
+    <center>
+    <h1>Create Account</h1>
+    <form>
+        <br>RFID: <br>
+        <input type="text" ng-model="createUser.RFID">
+        <br>Student ID: <br>
+        <input type="text" ng-model="createUser.StudentID">
+        <br>First name: <br>
+        <input type="text" ng-model="createUser.First_Name">
+        <br>Last name: <br>
+        <input type="text" ng-model="createUser.Last_Name">
+        <br>Role: <br>
+        <input type="text" ng-model="createUser.Role">
+        <br>Username: <br>
+        <input type="text" ng-model="createLogin.user">
+        <br>Password: <br>
+        <input type="text" ng-model="createLogin.pass">
+    </form>
+    <br><button type="button" class="btn btn-info" ng-click ="signup()">Create</button></h3></p></center>
+    </footer>
+    </center>
+</body>
+</html>

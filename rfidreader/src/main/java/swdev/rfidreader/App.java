@@ -45,12 +45,17 @@ public class App {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					rfid = AppRFID.getRfid();
+					if(form.getRFID() != null){
+						rfid = form.getRFID();
+					}
+					else
+						rfid = AppRFID.getRfid();
 					if (rfid != null) {
 						try {
 							Thread.sleep(500);
 							App.CheckRFID();
 							AppRFID.setRfid(null);
+							form.setRFID();
 						} catch (Exception e) {
 							System.out.println("Connection Fail");
 							e.printStackTrace();

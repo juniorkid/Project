@@ -41,13 +41,42 @@ app.post('/api/stat',function(req,res){
 	});
 });
 
+app.post('/api/createuser',function(req,res){
+	db_person.person.insert((req.body),function(err,books){
+		console.log(req);
+		console.log(req.body);
+		res.send(books);
+		io.emit("book:refresh")	
+	});
+});
+
+app.post('/api/signup',function(req,res){
+	db_login.login.insert((req.body),function(err,books){
+		console.log(req);
+		console.log(req.body);
+		res.send(books);
+		io.emit("book:refresh")	
+	});
+});
 
 app.post('/api/log',function(req,res){
 	now = new Date();
-	date = dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+	//date = dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
 	hours = now.getHours()+"";
 	min  = now.getMinutes()+"";
 	sec  = now.getSeconds()+"";
+
+
+
+	var year = now.getFullYear();
+
+    var month = now.getMonth() + 1;
+    month = (month < 10 ? "0" : "") + month;
+
+    var day  = now.getDate();
+    day = (day < 10 ? "0" : "") + day;
+
+    date = day + "/" + month + "/" + year;
 	console.log(date);
 	lastlog = { 
 				RFID: req.body.RFID,

@@ -29,6 +29,7 @@ public class RFIDListener extends Thread {
 				String s = new String(buffer);
 				//System.out.println(s.substring(1, 12));
 				rfid=s.substring(1, 12);
+				System.out.println(rfid);
 				serialPort.closePort();// Close serial port
 			}
 

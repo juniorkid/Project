@@ -23,6 +23,7 @@
 			<th><span class="label label-primary">Name</span></th>
 			<th><span class="label label-primary">StudentID</span></th>
 			<th><span class="label label-primary">Date</span></th>
+			<th><span class="label label-primary">Time</span></th>
 		</thead>
 		<tbody>
 			<tr ng-repeat="log in logs">
@@ -30,6 +31,7 @@
 				<td>{{log.Name}}</td>
 				<td>{{log.StudentID}}</td>
 				<td>{{log.Date}}</td>
+				<td>{{log.Hour}} : {{log.Min}} : {{log.Sec}}</td>
 			</tr>
 		</tbody>
 	</table>

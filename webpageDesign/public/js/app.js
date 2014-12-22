@@ -17,6 +17,17 @@ angular.module("myApp", ['btford.socket-io'])
 		})
 	}
 
+	$scope.signup = function(){
+		$scope.createLogin.RFID = $scope.createUser.RFID;
+		$http.post('/api/createuser',$scope.createUser).success(function(data){
+	    	$scope.createUser = {};
+	  	});
+	  	$http.post('/api/signup',$scope.createLogin).success(function(data){
+	    	$scope.createLogin = {};
+	  	});
+	}
+
+
 	function refreshLogs(){
 		$http.get('/api/log').success(function(data){
 			$scope.logs = data;

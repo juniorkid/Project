@@ -30,6 +30,8 @@ public class Login extends JFrame {
 	private final JTextField tfName;
 	private final JLabel lblTime;
 	private final JTextField tfTime;
+	private String RFID = null;
+	
 	public Login() {
 		// Create Form Frame
 		super("Login Form");
@@ -80,6 +82,10 @@ public class Login extends JFrame {
 		getContentPane().add(btnButton);
 	}
 	
+	public void setRFID(){
+		RFID = null;
+	}
+	
 	public void setName(String name){
 		tfName.setText(name);
 	}
@@ -88,16 +94,23 @@ public class Login extends JFrame {
 		tfTime.setText(date);
 	}
 	
+	public String getRFID(){
+		return RFID;
+	}
+
 	public void loginCheck(String user, String pass) {
 		System.out.println(user+"  "+pass);
 		try {
 			
 			//MD5
-			byte[] bytePassword = pass.getBytes();
-			MessageDigest md5 = MessageDigest.getInstance("MD5");
-			byte[] md5pass = md5.digest(bytePassword);
-			String md5StringPassword = new String(md5pass);
-			
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(pass.getBytes());
+			byte[] digest = md.digest();
+			StringBuffer md5pass = new StringBuffer();
+			for (byte b : digest) {
+				md5pass.append(String.format("%02x", b & 0xff));
+			}
+			System.out.println("digested(hex):" +md5pass.toString());
 			HttpClient client = HttpClientBuilder.create().build();
 			HttpGet request = new HttpGet("http://localhost:8080/api/login");
 			HttpResponse response = client.execute(request);
@@ -111,11 +124,13 @@ public class Login extends JFrame {
 			JSONArray array = new JSONArray(sb.toString());
 			for (int i = 0; i < array.length(); i++) {
 				JSONObject account = array.getJSONObject(i);
-		/*		if (account.getString("Login").equals(user) && account.getString("Password").equals(pass)) {
+				System.out.println(account.getString("pass"));
+				if (account.getString("user").equals(user) && account.getString("pass").equals(md5pass.toString())) {
 					System.out.println(account.getString("RFID"));
+					RFID = account.getString("RFID");
 				}
 				else
-					System.out.println("FAIL");*/
+					System.out.println("FAIL");
 			}
 			
 			
