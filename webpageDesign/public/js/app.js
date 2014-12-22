@@ -8,6 +8,7 @@ angular.module("myApp", ['btford.socket-io'])
 	$scope.persons = [];
 	$scope.personInstance = {};
 	$scope.logs = [];
+	$scope.selectedModel = {};
 	refreshPersons();
 	refreshLogs();
 
@@ -26,6 +27,7 @@ angular.module("myApp", ['btford.socket-io'])
 	    	$scope.createLogin = {};
 	  	});
 	}
+ 
 
 
 	function refreshLogs(){
@@ -35,11 +37,22 @@ angular.module("myApp", ['btford.socket-io'])
 		})
 	}
 
-	$scope.saveperson = function(){
-		$http.post('/api/book', $scope.personInstance).success(function(data){
+	
+
+	$scope.edituser = function(){
+		$http.post('/api/edit', $scope.selectedModel).success(function(data){
 			$scope.persons.push(data);
-			$scope.personInstance = {};
+			$scope.selectedModel = {};
 		});
+	}
+
+	$scope.ID_searching = function (){
+		console.log($scope.ID_search.StudentID);
+		console.log($scope.ID_search);
+		$http.post('/api/ID_search',$scope.ID_search).success(function(data){
+			$scope.ID_searchAll = data;			
+			console.log("Searching Success");
+		})
 	}
 
 	socketIO.on('person:refresh', function(){

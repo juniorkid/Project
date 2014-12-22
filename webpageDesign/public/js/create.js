@@ -1,5 +1,5 @@
 angular.module("myCreate", ['angular-md5'])
-.controller('mainCtrl', function($scope, $http, md5){
+.controller('main', function($scope, $http, md5){
 	$scope.createUser = {
 		late : 0 ,
 		all : 0
