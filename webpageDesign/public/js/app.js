@@ -17,7 +17,7 @@ angular.module("myApp", ['btford.socket-io'])
 	refreshLogs();
 
 	function refreshPersons(){
-		$http.get('/api/book').success(function(data){
+		$http.get('/api/person').success(function(data){
 			$scope.persons = data;
 		})
 	}
@@ -37,7 +37,7 @@ angular.module("myApp", ['btford.socket-io'])
 	function refreshLogs(){
 		$http.get('/api/log').success(function(data){
 			$scope.logs = data;
-			console.log(data);
+		//	console.log(data);
 		})
 	}
 
@@ -52,22 +52,22 @@ angular.module("myApp", ['btford.socket-io'])
 	$scope.ID_searching = function (){
 		$http.post('/api/log_search',$scope.ID_search).success(function(data){
 			$scope.log_searchAll = data;			
-			console.log("Searching Success");
+		//	console.log("Searching Success");
 		})
 
 		$http.post('/api/person_search',$scope.ID_search).success(function(data){
 			$scope.person_searchAll = data;			
-			console.log("Searching Success");
+		//	console.log("Searching Success");
 		})
 	}
 	//============================ DATE SEARCH ====================================
 	$scope.date_searching = function (){
-		console.log($scope.date_search.date);
-		console.log($scope.date_search);
+	//	console.log($scope.date_search.date);
+	//	console.log($scope.date_search);
 		$http.post('/api/date_search',$scope.date_search).success(function(data){
 			$scope.date_show = data;		
-			console.log($scope.date_search);	
-			console.log("Searching Success");	
+		//	console.log($scope.date_search);	
+		//	console.log("Searching Success");	
 		})
 	}
 

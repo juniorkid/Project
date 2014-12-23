@@ -106,12 +106,16 @@
 					<th><span class="label label-default">RFID</span></th>
 					<th><span class="label label-default">Name</span></th>
 					<th><span class="label label-default">StudentID</span></th>
+                    <th><span class="label label-default">Date</span></th>
+                    <th><span class="label label-default">Time</span></th>
 				</thead>
 				<tbody>
 					<tr ng-repeat="log in log_searchAll">
 						<td>{{log.RFID}}</td>
 						<td>{{log.Name}}</td>
 						<td>{{log.StudentID}}</td>
+                        <td>{{log.Date}}</td>
+                        <td>{{log.Hour}}:{{log.Min}}:{{log.Sec}}</td>
 					</tr>
 				</tbody>
                 </table>

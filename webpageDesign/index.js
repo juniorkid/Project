@@ -17,13 +17,13 @@ var sec  = [];
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json())
 
-app.get('/api/book',function(req,res){
+app.get('/api/person',function(req,res){
 	db_person.person.find({},function(err,persons){
 		res.send(persons);
 	});
 })
 
-app.post('/api/book',function(req,res){
+app.post('/api/person',function(req,res){
 	db_person.person.insert((req.body),function(err,persons){
 		res.send(persons);	
 		io.emit("person:refresh");
@@ -31,31 +31,31 @@ app.post('/api/book',function(req,res){
 });
 
 app.post('/api/stat',function(req,res){
-	console.log(req.body.all);
+	//console.log(req.body.all);
 	db_person.person.update({RFID : req.body.RFID},{RFID : req.body.RFID , StudentID : req.body.StudentID, 
 		First_Name : req.body.First_Name,Last_name : req.body.Last_name,Role : req.body.Role , 
 		late : req.body.late , all : req.body.all},function(err,persons){
-		console.log(persons);
+	//	console.log(persons);
 		res.send(persons);	
 		io.emit("person:refresh");
 	});
 });
 
 app.post('/api/createuser',function(req,res){
-	db_person.person.insert((req.body),function(err,books){
-		console.log(req);
-		console.log(req.body);
-		res.send(books);
-		io.emit("book:refresh")	
+	db_person.person.insert((req.body),function(err,persons){
+	//	console.log(req);
+	//	console.log(req.body);
+		res.send(persons);
+		io.emit("person:refresh")	
 	});
 });
 
 app.post('/api/signup',function(req,res){
-	db_login.login.insert((req.body),function(err,books){
+	db_login.login.insert((req.body),function(err,persons){
 		console.log(req);
 		console.log(req.body);
-		res.send(books);
-		io.emit("book:refresh")	
+		res.send(persons);
+		io.emit("person:refresh")	
 	});
 });
 
@@ -77,7 +77,7 @@ app.post('/api/log',function(req,res){
     day = (day < 10 ? "0" : "") + day;
 
     date = day + "/" + month + "/" + year;
-	console.log(date);
+	//console.log(date);
 	lastlog = { 
 				RFID: req.body.RFID,
 				Name: req.body.First_Name,
@@ -101,16 +101,16 @@ app.get('/api/log',function(req,res){
 
 //======================= SEARCH =============================
 app.post('/api/log_search',function(req,res){
-	console.log("Searching...");
-	console.log(req.body.StudentID)
+	//console.log("Searching...");
+	//console.log(req.body.StudentID)
 	db_logs.log.find(({StudentID:req.body.StudentID}),function(err,logs){
 		res.send(logs);
 	});
 });
 
 app.post('/api/person_search',function(req,res){
-	console.log("Searching...");
-	console.log(req.body.StudentID);
+	//console.log("Searching...");
+	//console.log(req.body.StudentID);
 	db_person.person.find(({StudentID:req.body.StudentID}),function(err,logs){
 		res.send(logs);
 
@@ -120,10 +120,10 @@ app.post('/api/person_search',function(req,res){
 
 //======================= DATE_SEARCH =============================
 app.post('/api/date_search',function(req,res){
-	console.log("DATE Searching...");
-	console.log(req.body.date)
+	//console.log("DATE Searching...");
+	//console.log(req.body.date)
 	db_logs.log.find(({Date:req.body.date}),function(err,logs){
-		console.log(logs);
+	//	console.log(logs);
 		res.send(logs);
 	});
 });
@@ -137,11 +137,11 @@ app.get('/api/login',function(req,res){
 
 
 app.post('/api/edituser',function(req,res){
-	console.log(req.body.all);
+	//console.log(req.body.all);
 	db_person.person.update({RFID : req.body.RFID},{RFID : req.body.RFID , StudentID : req.body.StudentID, 
 		First_Name : req.body.First_Name,Last_name : req.body.Last_name,Role : req.body.Role , 
 		late : req.body.late , all : req.body.all},function(err,persons){
-		console.log(persons);
+	//	console.log(persons);
 		res.send(persons);	
 		io.emit("person:refresh");
 	});

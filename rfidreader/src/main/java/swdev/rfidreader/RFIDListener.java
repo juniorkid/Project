@@ -20,7 +20,7 @@ public class RFIDListener extends Thread {
 	public void run() {
 		
 			try {
-				SerialPort serialPort = new SerialPort("COM3");
+				SerialPort serialPort = new SerialPort("COM5");
 				serialPort.openPort();// Open serial port
 				serialPort.setParams(9600, 8, 1, 0);// Set params.
 

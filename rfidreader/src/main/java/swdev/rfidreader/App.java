@@ -72,7 +72,7 @@ public class App {
 	public static void getAllData() {
 		try {
 			HttpClient client = HttpClientBuilder.create().build();
-			HttpGet request = new HttpGet("http://localhost:8080/api/book");
+			HttpGet request = new HttpGet("http://localhost:8080/api/person");
 			HttpResponse response = client.execute(request);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 					response.getEntity().getContent()));
