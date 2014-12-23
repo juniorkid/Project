@@ -67,6 +67,9 @@
                      <li>
                         <a href="ID_search.html">SearchID</a>
                     </li>
+                     <li>
+                        <a href="date_search.html">SearchDate</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -95,13 +98,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p><h3>Filter : <input type="text" id="ID_search" name="ID_search" placeholder="Student-ID" ng-model="ID_search.StudentID"><br><br></h3></p>
-                <button type="button" ng-click="ID_searching()">Search</button></h3></p></center>
+                <center>
+                Filter : <input type="text" id="ID_search" name="ID_search" placeholder="Student-ID" ng-model="ID_search.StudentID">
+                <button type="button" ng-click="ID_searching()" class="btn btn-default">Search</button><br><br>
 		        <table id="table1"class="table table-striped">
 				<thead>
-					<th><span class="label label-primary">RFID</span></th>
-					<th><span class="label label-primary">Name</span></th>
-					<th><span class="label label-primary">StudentID</span></th>
+					<th><span class="label label-default">RFID</span></th>
+					<th><span class="label label-default">Name</span></th>
+					<th><span class="label label-default">StudentID</span></th>
 				</thead>
 				<tbody>
 					<tr ng-repeat="log in log_searchAll">
@@ -110,7 +114,8 @@
 						<td>{{log.StudentID}}</td>
 					</tr>
 				</tbody>
-	</table>
+                </table>
+                </center>
                 </div>
             </div>
         </div>

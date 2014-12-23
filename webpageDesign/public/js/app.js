@@ -12,6 +12,7 @@ angular.module("myApp", ['btford.socket-io'])
 	$scope.log_searchAll = [];
 	$scope.person_searchAll = [];
 	$scope.date_search = {};
+	$scope.data_show ={};
 	refreshPersons();
 	refreshLogs();
 
@@ -64,9 +65,9 @@ angular.module("myApp", ['btford.socket-io'])
 		console.log($scope.date_search.date);
 		console.log($scope.date_search);
 		$http.post('/api/date_search',$scope.date_search).success(function(data){
-			$scope.date_search = data;		
+			$scope.date_show = data;		
 			console.log($scope.date_search);	
-			console.log("Searching Success");
+			console.log("Searching Success");	
 		})
 	}
 
