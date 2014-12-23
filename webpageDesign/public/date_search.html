@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Searching</title>
+	<script src="lib/angular/angular.js"></script>
+	<script src="lib/socket.io-client/socket.io.js"></script>
+	<script src="lib/angular-socket-io/socket.js"></script>
+	<script src="js/app.js"></script>
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.min.css">
+
+	<style>
+		footer{
+			background-color:grey; border:2px solid grey; padding:8px ;
+		}
+	</style>	
+
+</head>
+<body ng-controller="mainCtrl">
+
+	<center>
+		<h1>Daily Log Searching</h1>
+		<a href="index.html">Back to Homepage</a><br><br>
+
+		<footer>
+		<p><h3>Filter (dd:mm:yyyy) : <input type="text" size="10" id="date_search" name="date_search" placeholder="ex(1:5:2557)" ng-model="date_search.date"><br><br></p>
+		<button type="button" ng-click="date_searching()">Search</button></h3></p></center>
+		</footer>
+
+	</center>
+
+	<table id="table1"class="table table-striped">
+		<thead>
+			<th><span class="label label-primary">RFID</span></th>
+			<th><span class="label label-primary">Name</span></th>
+			<th><span class="label label-primary">StudentID</span></th>
+			<th><span class="label label-primary">Date</span></th>
+			<th><span class="label label-primary">Time</span></th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="log in date_search">
+				<td>{{log.RFID}}</td>
+				<td>{{log.Name}}</td>
+				<td>{{log.StudentID}}</td>
+				<td>{{log.Date}}</td>
+				<td>{{log.Hour}}:{{log.Min}}:{{log.Sec}}</td>
+			</tr>
+		</tbody>
+	</table>	
+
+</body>
+</html>

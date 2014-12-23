@@ -118,6 +118,17 @@ app.post('/api/person_search',function(req,res){
 });
 //============================================================
 
+//======================= DATE_SEARCH =============================
+app.post('/api/date_search',function(req,res){
+	console.log("DATE Searching...");
+	console.log(req.body.date)
+	db_logs.log.find(({Date:req.body.date}),function(err,logs){
+		console.log(logs);
+		res.send(logs);
+	});
+});
+//============================================================
+
 app.get('/api/login',function(req,res){
 	db_login.login.find({},function(err,logs){
 		res.send(logs);
