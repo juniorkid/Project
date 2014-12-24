@@ -52,8 +52,8 @@ app.post('/api/createuser',function(req,res){
 
 app.post('/api/signup',function(req,res){
 	db_login.login.insert((req.body),function(err,persons){
-		console.log(req);
-		console.log(req.body);
+		//console.log(req);
+		//console.log(req.body);
 		res.send(persons);
 		io.emit("person:refresh")	
 	});
@@ -137,11 +137,11 @@ app.get('/api/login',function(req,res){
 
 
 app.post('/api/edituser',function(req,res){
-	//console.log(req.body.all);
-	db_person.person.update({RFID : req.body.RFID},{RFID : req.body.RFID , StudentID : req.body.StudentID, 
+	console.log(req.body);
+	db_person.person.update({StudentID: req.body.StudentID},{RFID : req.body.RFID , StudentID : req.body.StudentID, 
 		First_Name : req.body.First_Name,Last_name : req.body.Last_name,Role : req.body.Role , 
 		late : req.body.late , all : req.body.all},function(err,persons){
-	//	console.log(persons);
+		console.log(persons);
 		res.send(persons);	
 		io.emit("person:refresh");
 	});
