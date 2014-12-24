@@ -103,6 +103,7 @@
                     <table class="table table-striped">
                     <thead>
                         <th><span class="label label-primary">RFID</span></th>
+                        <th><span class="label label-primary">StudentID</span></th>
                         <th><span class="label label-primary">Name</span></th>
                         <th><span class="label label-primary">Role</span></th>
                         <th><span class="label label-primary">late</span></th>
@@ -111,6 +112,7 @@
                     <tbody>
                         <tr ng-repeat="person in persons">
                             <td>{{person.RFID}}</td>
+                            <td>{{person.StudentID}}</td>
                             <td>{{person.First_Name}} &nbsp; {{person.Last_name}}</td>
                             <td>{{person.Role}}</td>
                             <td>{{person.late}}</td>

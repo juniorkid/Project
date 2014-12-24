@@ -1,5 +1,6 @@
 package swdev.rfidreader;
 
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,7 +32,7 @@ public class Login extends JFrame {
 	private final JLabel lblTime;
 	private final JTextField tfTime;
 	private String RFID = null;
-	
+	private boolean dia = true;
 	public Login() {
 		// Create Form Frame
 		super("Login Form");
@@ -125,12 +126,26 @@ public class Login extends JFrame {
 			for (int i = 0; i < array.length(); i++) {
 				JSONObject account = array.getJSONObject(i);
 				System.out.println(account.getString("pass"));
+				Component frame = null;
 				if (account.getString("user").equals(user) && account.getString("pass").equals(md5pass.toString())) {
 					System.out.println(account.getString("RFID"));
 					RFID = account.getString("RFID");
+					dia = true;
+					break;
 				}
 				else
-					System.out.println("FAIL");
+					dia = false;
+			}
+			Component frame = null;
+			if(dia){
+				JOptionPane.showMessageDialog(frame,
+					    "Complete.");
+			}
+			else {
+				JOptionPane.showMessageDialog(frame,
+					    "Login Failed. Try it agian",
+					    "Login Failed",
+					    JOptionPane.ERROR_MESSAGE);
 			}
 			
 			
